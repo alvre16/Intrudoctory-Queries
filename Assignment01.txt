@@ -1,0 +1,41 @@
+/* This is the first assignment:
+We are writing some introductory queries using the database named: AdventureWorksDW2012.
+*/
+
+SELECT DISTINCT City, StateProvinceName, EnglishCountryRegionName -- list of unique cities, states, and country
+FROM Geography;
+
+SELECT LastName, MiddleName, FirstName -- all customers last, middle and first names by acending order
+FROM Customer
+ORDER BY LastName;
+
+SELECT TOP 10 Gender, MaritalStatus, BirthDate -- gender, marital status and birthdate of the first 10 customers
+FROM Customer;
+
+SELECT ProductKey, TotalProductCost, SalesAmount -- product key, total product cost and the sales amout of internet sales where the sales amount is greater or equal to $3500
+FROM FactInternetSales
+WHERE SalesAmount >= 3500;
+
+SELECT DISTINCT EnglishProductName -- list of the unique english product names with class that is not null
+FROM Product
+WHERE Class <> 'NULL';
+
+SELECT ProductKey, UnitsIn, UnitsOut -- unique product key, units in and units out with unit costs between $8 and $10
+FROM FactProductInventory
+WHERE UnitCost BETWEEN 8 and 10;
+
+SELECT EnglishPromotionName, EnglishPromotionType -- english promotion name and promotion type with a maximum quantity that is not 100
+FROM Promotion
+WHERE MaxQty <> 100;
+
+SELECT EmployeeKey, CalendarQuarter, CalendarYear -- employee key, the calendar quarter and the calendar year of people  with sales amount quota that equal 1000, 10000 or 100000
+FROM FactSalesQuota
+WHERE SalesAmountQuota IN ('1000', '10000', '100000');
+
+SELECT EmployeeKey, OrderQuantity, UnitPrice, SalesAmount -- employee key, order quantity, unit price and sales amount of products that have a tax amount and total product cost below $20
+FROM FactResellerSales
+WHERE TaxAmt < 20 and TotalProductCost < 20;
+
+SELECT LastName, MiddleName, FirstName -- last name, middle name, and first name of employees by first name descending order where middle name is not null
+FROM Employee
+WHERE MiddleName <> 'NULL';
